@@ -17,6 +17,15 @@ def captcha(list, prev=None, count=0, sum=0, rec = 0):
         return captcha(rest, first, count + 1, sum, rec+ 1)
     else:
         return captcha(rest, first, 0, sum + (count * prev), rec+ 1)
+        
+def captcha2(l):
+    half = int(len(l) / 2)
+    sum = 0
+    for index in range(0, half):
+        if l[index] == l[half + index]:
+            sum += 2 * l[index]
+    return sum
+    
 
 x = [int(item) for item in input]
-print(captcha(x))
+print(captcha2(x))
