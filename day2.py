@@ -17,7 +17,14 @@ input = """179	2358	5197	867	163	4418	3135	5049	187	166	4682	5080	5541	172	4294	
 125	454	110	103	615	141	562	199	340	80	500	473	221	573	108	536
 1311	64	77	1328	1344	1248	1522	51	978	1535	1142	390	81	409	68	352"""
 
+sum1 = reduce(lambda a, b: a + b, map(lambda l: max(l) - min(l), [[int(item) for item in line.split()] for line in input.split('\n')]))
 
-sum = reduce(lambda a, b: a + b, map(lambda l: max(l) - min(l), [[int(item) for item in line.split()] for line in input.split('\n')]))
+def find_divisor(l):
+    for div in l:
+        for num in filter(lambda x: x > div, l):
+            if num % div == 0:
+                return num / div
 
-print(sum)
+even_sum = sum([find_divisor([int(item) for item in line.split()]) for line in input.split('\n')])
+
+print(even_sum)
