@@ -16,7 +16,7 @@ def redist(l):
         blocks[index] += blocks_to_redist
         remaining_blocks -= blocks_to_redist
         index = (index + 1) % len(blocks)
-    
+
     # move the last chunk of blocks
     blocks[index] += remaining_blocks
     return blocks
@@ -28,10 +28,12 @@ def count_redist(l):
     while True:
         count += 1
         result = redist(result)
-        print(result)
         if result in results:
-            return count
+            return result, count
         
         results.append(result)
-    
-print(count_redist(input))
+
+redistributed, count = count_redist(input)   
+print(count)
+
+print(count_redist(redistributed)[1] - 1)
