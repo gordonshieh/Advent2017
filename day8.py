@@ -12,6 +12,7 @@ ops = {
     '==': operator.eq,
     '!=': operator.ne
 }
+max_reg = 0
 
 with open('day8_input.txt', 'r') as f:
     for line in f:
@@ -21,5 +22,8 @@ with open('day8_input.txt', 'r') as f:
         if ops[op2](reg_val2, int(v2)):
             reg_val1 = ops[op1](reg_val1, int(v1))
             registers[r1] = reg_val1
+            if reg_val1 > max_reg:
+                max_reg = reg_val1
             
 print(sorted(registers.items(), key=operator.itemgetter(1))[-1][1])
+print(max_reg)
